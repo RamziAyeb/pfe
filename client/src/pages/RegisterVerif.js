@@ -1,11 +1,12 @@
 import { useState } from "react"
 import "../styles/registerverif.css"
 const RegisterVerif = () => {
-  const [clientSelected, setClientSelected] = useState(false)
-  const [presSelected, setPresSelected] = useState(false)
+  const [selected, setSelected] = useState('yes');
 
-  console.log(clientSelected,'radioo')
-  console.log(presSelected,'presssssssss')
+  const handleChange = event => {
+    console.log(event.target.value);
+    setSelected(event.target.value);
+  };
 
   return (
     <>
@@ -16,13 +17,14 @@ const RegisterVerif = () => {
     <div className="clien">
       <div className="icon-inpt">
       <i className="uil uil-postcard"></i>
-      {!presSelected ? 
-        <input onClick={()=>setPresSelected(true)}   type="radio" defaultChecked={false}/> : 
-        <input  onClick={()=>setPresSelected(false)}   type="radio" />
-
-      
-      }
-
+      <input
+      defaultValue={false}
+          type="radio"
+          id="yes"
+          value="yes"
+          checked={selected === 'yes'}
+          onChange={handleChange}
+        />
 
     
       </div>
@@ -33,10 +35,14 @@ const RegisterVerif = () => {
 
     <div className="icon-inpt">
     <i class="uil uil-wrench"></i>
- {!clientSelected ?
-  <input onClick={()=>setClientSelected(true)}  type="radio" defaultChecked={false}/>  : 
-  <input onClick={()=>setClientSelected(false)}    type="radio" defaultChecked={true}/> 
- }
+    <input
+    
+          type="radio"
+          id="no"
+          value="no"
+          onChange={handleChange}
+          checked={selected === 'no'}
+        />
 
 
  
