@@ -7,15 +7,17 @@ import { useDispatch } from 'react-redux';
 import Profile from './pages/Profile';
 import PrivateRoute from './PrivateRoutes/PrivateRoutes';
 import RegisterVerif from './pages/RegisterVerif';
+import { useState } from 'react';
 function App() {
   const dispatch = useDispatch();
+  const [ping, setPing] = useState(false)
   const isAuth = localStorage.getItem("token")
   useEffect(() => {
 
 if(isAuth){
   dispatch (userCurrent())
 }
-  }, [dispatch])
+  }, [dispatch,ping])
   
   return (
     <>
@@ -25,7 +27,7 @@ if(isAuth){
     <Route path="/profile" element={<Profile/>}/>
 
     </Route>
-    <Route path="/registerverif" element={<RegisterVerif/>}/>
+        <Route path="/registerverif" element={<RegisterVerif ping={ping} setPing={setPing} />}/>
 
    </Routes>
     </>

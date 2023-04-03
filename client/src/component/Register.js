@@ -122,7 +122,7 @@ const navigate = useNavigate();
      className="signup_button"
      onClick={()=>{dispatch (userRegister(register));
       setTimeout(() => {
-        navigate("/profile");
+        navigate("/registerverif");
         }, 1500);  
     }}
    >
