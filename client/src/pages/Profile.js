@@ -10,7 +10,8 @@ const Profile = () => {
     const navigate = useNavigate();
   return (
     <div>
-      Profile
+      Profile 
+      azza
       <h1>name : {user?.name}</h1>
       <h1>role : {user?.role}</h1>
       <button
