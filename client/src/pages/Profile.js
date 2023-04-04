@@ -12,6 +12,7 @@ const Profile = () => {
     <div>
       Profile 
       azza
+      Hazemmmmm
       <h1>name : {user?.name}</h1>
       <h1>role : {user?.role}</h1>
       <button
