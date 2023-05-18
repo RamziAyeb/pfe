@@ -51,7 +51,8 @@ const RegisterVerif = ({ping,setPing}) => {
             </div>
           </div>
           <div className="btn-reg">
-            {selected == "client" ?   <button
+            {selected == "client" ?   
+            <button
               onClick={() => {
                 dispatch(
                   updateUser({ id: user?._id, user: { role: selected } })
@@ -69,7 +70,7 @@ const RegisterVerif = ({ping,setPing}) => {
                   updateUser({ id: user?._id, user: { role: selected } })
                 );
 
-                navigate("/profile");
+                navigate("/profilepres");
                 setPing(!ping);
               }}
             >

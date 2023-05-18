@@ -1,4 +1,10 @@
-.main{
+.regp{
+	display: flex;
+	justify-content:center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.regis{
 	width: 350px;
 	height: 500px;
 	background: red;
@@ -10,7 +16,7 @@
 #chk{
 	display: none;
 }
-.signup{
+.sign{
 	position: relative;
 	animation: movee 3s ;
 
@@ -25,7 +31,7 @@
 	from {bottom: 0;}
 	to {bottom: 90px;}
   }
-.signup_mokerza{
+.signup_mk{
 	position: relative;
 width:100%;
 height: 100%;
@@ -36,7 +42,7 @@ animation: mymove 5s ;
 	from {bottom: 90px;}
 	to {bottom: 0px;}
   }
-label{
+.lab{
 	color: transparent;
 	font-size: 2.3em;
 	justify-content: center;
@@ -46,7 +52,7 @@ label{
 	cursor: pointer;
 	transition: .5s ease-in-out;
 }
-input{
+.inp{
 	width: 60%;
 	height: 20px;
 	background: #e0dede;
@@ -78,25 +84,25 @@ input{
 .signup_button:hover{
 	background: #6d44b8;
 }
-.login{
+.log{
 	height: 460px;
 	background: #eee;
 	border-radius: 60% / 10%;
 	transform: translateY(-180px);
 	transition: .8s ease-in-out;
 }
-.login label{
+.log label{
 	color: #573b8a;
 	transform: scale(.6);
 }
 
-#chk:checked ~ .login{
+#chk:checked ~ .log{
 	transform: translateY(-500px);
 }
-#chk:checked ~ .login label{
+#chk:checked ~ .log lab{
 	transform: scale(1);	
 }
-#chk:checked ~ .signup label{
+#chk:checked ~ .signup lab{
 	transform: scale(.6);
 }
 
@@ -110,4 +116,4 @@ input{
   opacity: 0;
   height: 0;
   transition: height 0.5s ease-in;
-}
+} 

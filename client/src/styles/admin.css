@@ -1,0 +1,21 @@
+.adm{
+    display: flex;
+   justify-content: center;
+  
+}
+.adm-a{
+    border: 1px solid black;
+    width: 20%;
+    height: auto;
+    padding : 10px;
+    margin: 10px;
+    text-align: center;
+ }
+.adm-b{
+    border: 1px solid black;
+    width: 80%;
+    height: auto;
+    padding : 10px;
+    margin: 10px;
+    text-align: center;
+ }

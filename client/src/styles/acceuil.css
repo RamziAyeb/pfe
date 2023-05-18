@@ -1,0 +1,11 @@
+.acceuil{
+    display: flex;
+    flex-wrap: wrap;
+    
+    
+    
+}
+.acccard{
+    margin: 10px;
+    width: 30%;
+}

@@ -1,0 +1,54 @@
+/* Main headings */
+h1 {
+  font-size: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #333;
+  text-shadow: 2px 2px #e6e6e6;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+  text-shadow: 2px 2px #e6e6e6;
+}
+
+/* Body text */
+p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+/* List items */
+ul {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  color: #666;
+}
+
+li {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+li strong {
+  font-weight: bold;
+}
+
+/* Container */
+/* div {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+} */

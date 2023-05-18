@@ -13,12 +13,16 @@ export const userRegister = createAsyncThunk("user/register", async (user) => {
 });
 export const userLogin = createAsyncThunk("user/login", async (user) => {
   try {
-    let result = await axios.post("http://localhost:5001/user/login", user);
+    let result = await axios.post("http://localhost:5001/user/login", user)
+    
     // console.log(result.data)
     return result.data;
+    
   } catch (error) {
     console.log(error);
+    
   }
+  
 });
 export const userCurrent = createAsyncThunk("user/current", async () => {
   try {
@@ -30,7 +34,7 @@ export const userCurrent = createAsyncThunk("user/current", async () => {
     // console.log(result.data)
     return result.data;
   } catch (error) {
-    console.log(error);
+   
   }
 });
 //update user

@@ -79,9 +79,11 @@ userRouter.post("/login", loginRules(), validation, async (req, res) => {
     //send the user
     res
       .status(200)
-      .send({ user: searchedUser, msg: "success", token:`Bearer ${token}` });
+      .send({ user: searchedUser, msg: "succdddddess", token:`Bearer ${token}` });
   } catch (error) {
-    res.send({ msg: "can not get th user" });
+    res
+    .status(4010)
+    .send({ msg: "can not get th user" });
   }
 });
 
