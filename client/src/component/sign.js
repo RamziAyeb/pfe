@@ -3,8 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -17,64 +15,48 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { userLogin } from "../redux/userSlice/userSlice";
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-const theme = createTheme();
-
-export default function SignInSide() {
-  
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import CircularProgress from "@mui/material/CircularProgress";
+import bbbb from '../image/bbbb.png'
+function SignInSide() {
   const result = useSelector((state) => state.user);
+  const [isSignedIn, setIsSignedIn] = useState(null);
+  const [error, setError] = useState(null); // Error state
+  const [loading, setLoading] = useState(false); // Loading state
 
-  const [isSignedIn, setIsSignedIn] = useState(null)
-  
   const signin = () => {
-    if (result.status ) {
+    if (result.status) {
       setIsSignedIn(true);
     }
   };
+
   const { id } = useParams;
   const [user, setUser] = useState();
 
-  const [login, setlogin] = useState({
+  const [login, setLogin] = useState({
     email: "",
     password: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
- 
+  const [open, setOpen] = useState(false);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:5001/getallusers').then((res) => {
+    axios.get("http://localhost:5001/getallusers").then((res) => {
       setUsers(res.data);
     });
   }, []);
-  console.log(users,"users")
-  
+  console.log(users, "users");
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
   };
 
   return (
-    
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={createTheme()}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
@@ -83,7 +65,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random)",
+            backgroundImage: `url(${bbbb})`,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -107,7 +89,7 @@ export default function SignInSide() {
               {/* <LockOutlinedIcon /> */}
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+            Se connecter
             </Typography>
             <Box
               component="form"
@@ -120,70 +102,81 @@ export default function SignInSide() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Adresse e-mail"
                 name="email"
                 autoComplete="email"
                 autoFocus
-                onChange={(e) => setlogin({ ...login, email: e.target.value })}
+                onChange={(e) =>
+                  setLogin({ ...login, email: e.target.value })
+                }
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="Mot de passe"
                 type="password"
                 id="password"
                 autoComplete="current-password"
                 onChange={(e) =>
-                  setlogin({ ...login, password: e.target.value })
+                  setLogin({ ...login, password: e.target.value })
                 }
               />
-              {/* {users?.map((elm)=>elm.email== login.email).map((el)=><>
-              {el?.role}
-          
-              </>)} */}
 
-         
-<Button
-  type="submit"
-  fullWidth
-  variant="contained"
-  sx={{ mt: 3, mb: 2 }}
-  onClick={() => {
-    dispatch(userLogin(login), signin());
-    setTimeout(() => {
-      const user = users?.find((el) => el.email === login.email);
-      // {console.log(user.role,"rollee");}
-      if (user) {
-        if (user.role === "client") {
-          navigate('/profile');
-        } else if (user.role === "prestataire") {
-          navigate('/profilepres');
-        } else if (user.isAdmin === true) {
-          navigate('/admin');
-        } else {
-          // Handle other user types or scenarios
-        }
-      } else {
-        // Handle case when user is not found
-      }
-    }, 2500);
-  }}
->
-  Sign In
-</Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={() => {
+                  setLoading(true); // Show loading indicator
+                  dispatch(userLogin(login), signin());
+                  setTimeout(() => {
+                    const user = users?.find((el) => el.email === login.email );
+                    if (user) {
+                      if (user.role === "client") {
+                        navigate("/profile");
+                      } else if (user.isAdmin === true) {
+                        navigate("/admin");
+                      } else {
+                        navigate("/profilepres");
+                      }
+                    } else {
+                      setOpen(true); // Open the Snackbar
+                    }
+                    setLoading(false); // Hide loading indicator
+                  }, 2500);
+                }}
+                    >
+                {loading ? <CircularProgress 
+                color="inherit"
+                size={24} /> : "Se connecter"}
+              </Button>
 
-
+              <Snackbar
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                open={open}
+                autoHideDuration={6000}
+                onClose={() => setOpen(false)}
+              >
+                <MuiAlert
+                  onClose={() => setOpen(false)}
+                  severity="error"
+                  sx={{ width: "100%" }}
+                >
+                  email ou mot de passe incorrect
+                </MuiAlert>
+              </Snackbar>
 
               <Grid container>
                 <Grid item>
                   <Link href="/signUp" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"Si vous n'avez pas encore de compte, créez-en un."}
                   </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
+              
             </Box>
           </Box>
         </Grid>
@@ -191,3 +184,5 @@ export default function SignInSide() {
     </ThemeProvider>
   );
 }
+
+export default SignInSide;

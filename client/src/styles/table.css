@@ -1,0 +1,37 @@
+.user-table {
+  margin-top: 20px;
+  font-size: 14px;
+  width: 100%;}
+
+.user-table th,
+.user-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+}
+
+.user-table th {
+  font-weight: bold;
+}
+
+.user-table th:first-child,
+.user-table td:first-child {
+  text-align: left;
+}
+
+.user-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.user-table tbody tr:hover {
+  background-color: #e1e1e1;
+}
+
+.user-table td:last-child {
+  white-space: nowrap;
+}
+
+.user-table .btn {
+  padding: 5px 10px;
+  font-size: 14px;
+}

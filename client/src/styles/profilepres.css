@@ -17,4 +17,8 @@
     padding : 10px;
     margin: 10px;
   }
-  
+  .galerie{
+    border: 1px solid black;
+    height :  auto;
+    border-radius: 25px;
+  }

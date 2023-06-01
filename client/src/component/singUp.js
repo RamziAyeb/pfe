@@ -43,7 +43,8 @@ export default function SignUp() {
         email:"",
         password:"",
         age:"",
-        place:""
+        place:"",
+        role:""
       
       });
       const dispatch = useDispatch();
@@ -83,7 +84,7 @@ export default function SignUp() {
             {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+          S’inscrire 
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -94,7 +95,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="Prénom"
                   autoFocus
                   onChange={(e) =>setregister({...register, name:e.target.value})}
                 />
@@ -104,7 +105,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  label="Nom "
                   name="lastName"
                   autoComplete="family-name"
                   onChange={(e) =>setregister({...register, lastName:e.target.value})}
@@ -168,7 +169,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Adresse e-mail"
                   name="email"
                   autoComplete="email"
                   onChange={(e) =>setregister({...register, email:e.target.value})}
@@ -178,7 +179,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12} sm={12}>
               <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">role</InputLabel>
+              <InputLabel id="demo-simple-select-label">Rôle</InputLabel>
               
         <Select
           labelId="demo-simple-select-label"
@@ -199,7 +200,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Mot de passe"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -216,16 +217,22 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}
               onClick={()=>{dispatch (userRegister(register));
                 setTimeout(() => {
-                  navigate("/profile");
+                  if (register.role=="client"){
+                    navigate("/profile");
+                  }
+                  else if (register.role=="prestataire"){
+                    navigate("/registerverif")
+                  }
+                  
                   }, 1500);  
               }}
             >
-              Sign Up
+             S’inscrire
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/signIn" variant="body2">
-                  Already have an account? Sign in
+                Si vous avez déjà un compte, connecter-vous ici
                 </Link>
               </Grid>
             </Grid>

@@ -1,34 +1,44 @@
+import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { BiTrash } from 'react-icons/bi';
+import '../styles/table.css'
 function DarkExample() {
   const deleteUser = (userId) => {
-    axios.delete(`http://localhost:5001/deleteuser/${userId}`)
+    axios
+      .delete(`http://localhost:5001/deleteuser/${userId}`)
       .then(() => {
-        setUser((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+        setUser((prevUsers) => prevUsers.filter((user) => user._id !== userId));
       })
       .catch((err) => {
         console.error(err);
       });
   };
+
   const [user, setUser] = useState([]);
-  console.log(user,"hh")
+
   useEffect(() => {
-    axios.get('http://localhost:5001/getallusers').then((res) => {
-      setUser(res.data);
-    });
+    axios
+      .get('http://localhost:5001/getallusers')
+      .then((res) => {
+        const filteredUsers = res.data.filter((use) => use.role !== '');
+        setUser(filteredUsers);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
+
   return (
-    <Table striped bordered hover variant="dark">
+    <table striped bordered hover variant="dark" className="user-table">
       <thead>
         <tr>
-          <th>nbr</th>
+          <th>#</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Role</th>
-          <th> </th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -39,15 +49,15 @@ function DarkExample() {
             <td>{use.lastName}</td>
             <td>{use.role}</td>
             <td>
-            <Button variant="outline-danger" onClick={()=>deleteUser(user._id)
-            }>
-            <BiTrash /> 
-            </Button>{' '}
+              <Button variant="outline-danger" onClick={() => deleteUser(use._id)}>
+                <BiTrash />
+              </Button>{' '}
             </td>
           </tr>
         ))}
       </tbody>
-    </Table>
+    </table>
   );
 }
+
 export default DarkExample;

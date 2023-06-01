@@ -1,0 +1,78 @@
+.circledash {
+    display: flex;
+    justify-content: center;
+    box-sizing:none
+  }
+  
+  .role-card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .role-card {
+    width: 200px;
+  }
+  
+  .circle-tile {
+    text-align: center;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .circle-tile-heading {
+    color: #fff;
+    padding: 10px;
+    background-color: #2196f3;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+  }
+  
+  .circle-tile-content {
+    padding-top: 10px;
+    color: #333;
+  }
+  
+  .circle-tile-description {
+    font-size: 14px;
+    color: #999;
+  }
+  
+  .circle-tile-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .circle-tile-footer {
+    display: block;
+    margin-top: 20px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .circle-tile-footer i {
+    margin-left: 5px;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .adm {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%;
+    }
+  
+    .adm-content {
+      order: 2;
+    }
+  
+    .role-card {
+      width: 100%;
+    }
+  }

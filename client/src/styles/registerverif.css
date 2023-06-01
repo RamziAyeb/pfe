@@ -10,8 +10,8 @@
     background-color: #fff;
     border: 1px solid #31313141;
     border-radius: 9px;
-    width: 50%;
-    height: 55%;
+    width: auto;
+    height: auto;
 }
 .registerverif-container h2 {
     font-family: "Rza, Rza-fallback";
@@ -31,6 +31,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+    display: flex;
 }
 .clien-pres .clien{
     width: 220px;
@@ -51,14 +52,11 @@ position: absolute;
 bottom: 4px;
 left: 138px;
 }
-.clien-pres .clien .uil-postcard {
+.clien-pres .clien .icon {
 font-size: 40px;
 padding-left: 10px;
 }
-.clien-pres .clien .uil-wrench{
-    font-size: 40px;
-    padding-left: 10px;
-    }
+/*  */
 .clien h4{
     font-family: "Neue Montreal", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 22px;

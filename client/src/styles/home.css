@@ -1,21 +1,39 @@
-  .hom{
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    align-items: center;
-  }
-  .hom-a{
-    
-     width:100px;
-    height: 300px;
-    
-    
-  }
-  .hom-b{
-    border: 1px solid black;
-    width: 80%;
-    height :  auto;
-    padding : 10px;
-    margin: 10px;
-    
-  }
+.home-wrapper {
+  display: flex;
+  
+}
+
+/* Style the sidebar */
+.sidebar {
+  width: 200px;
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+ 
+  padding: 20px;
+}
+
+/* Adjust the main content area */
+.content {
+  margin-left: 200px; /* Set the same width as the sidebar */
+  margin-top: 64px; /* Add margin-top for spacing */
+  padding: 20px;
+  
+}
+
+/* Ensure the navbar is always visible */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  
+}
+.pagination-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 9px;
+}

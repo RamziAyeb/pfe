@@ -6,24 +6,80 @@ require("dotenv").config();
 db_connect();
 app.use(express.json());
 app.use(cors());
+
 const User= require('./models/user');
 const userRoute = require('./routes/user')
 app.use('/user',userRoute)
 
+const Reservation = require('./models/reservation');
+const reservationRoute = require('./routes/reservation');
+app.use('/reservation', reservationRoute);
 
 
 // get prestataire
-app.get('/getusers', async(req,res)=>{
-    try{
-        const utilisateur = await User.find({role:'prestataire'})
-        res.send(utilisateur)
-
+app.get('/getusers', async (req, res) => {
+    try {
+      const utilisateurs = await User.find({ role: { $nin: ['', 'client'] } });
+      res.send(utilisateurs);
+    } catch (err) {
+      res.status(500).send(err);
     }
-    catch(err){
-        res.send(err)
+  });
+  
+  // get plombier
+  app.get('/plombier', async (req, res) => {
+    try {
+      const utilisateurs = await User.find({ role: 'plombier' });
+      res.send(utilisateurs);
+    } catch (err) {
+      res.status(500).send(err);
     }
-}
-)
+  });
+  // get electrecien
+  app.get('/electrecien', async (req, res) => {
+    try {
+      const utilisateurs = await User.find({ role: 'electrecien' });
+      res.send(utilisateurs);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
+   // get menuisier
+   app.get('/menuisier', async (req, res) => {
+    try {
+      const utilisateurs = await User.find({ role: 'menuisier' });
+      res.send(utilisateurs);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
+  // get forgeron
+  app.get('/forgeron', async (req, res) => {
+    try {
+      const utilisateurs = await User.find({ role: 'forgeron' });
+      res.send(utilisateurs);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
+    // get technicien
+    app.get('/technicien', async (req, res) => {
+      try {
+        const utilisateurs = await User.find({ role: 'technicien de maintenance' });
+        res.send(utilisateurs);
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    });
+  // get technicien
+  app.get('/peinteur', async (req, res) => {
+    try {
+      const utilisateurs = await User.find({ role: 'peinteur' });
+      res.send(utilisateurs);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
 // prestataire by id
 app.get('/getpres/:id' , async(req,res)=>{
     try {
@@ -80,9 +136,30 @@ app.put('/updateuser/:id', async (req, res) => {
     }
   });
 
-  
+  // all reservation 
+  app.get('/getallreservation', async(req,res)=>{
+    try{
+        const reservation = await Reservation.find({})
+        res.send(reservation)
+
+    }
+    catch(err){
+        res.send(err)
+    }
+}
+)
+app.delete('/deletereservation/:id', async (req, res) => {
+  try {
+      id = req.params.id
+      deletereservation= await Reservation.findByIdAndDelete({ _id: id })
+      res.send(deletereservation)
+
+  } catch (error) {
+      res.send(error)
+  }
+})
 
 
-
+  PORT=process.env.PORT
 
 app.listen(process.env.PORT,(err)=>err?console.log(err):console.log("server is running"));
